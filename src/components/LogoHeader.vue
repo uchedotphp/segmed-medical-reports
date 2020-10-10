@@ -128,7 +128,7 @@
               <li
                 id="listbox-item-0"
                 role="option"
-                class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 hover:bg-gray-200 border-l-2 hover:border-red-500"
+                class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
               >
                 <div class="flex items-center space-x-3">
                   <svg
@@ -172,7 +172,7 @@
               <li
                 id="listbox-item-0"
                 role="option"
-                class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 mb-1 hover:bg-gray-200 border-l-2 hover:border-red-500"
+                class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 mb-1 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
               >
                 <div class="flex items-center space-x-3">
                   <svg
