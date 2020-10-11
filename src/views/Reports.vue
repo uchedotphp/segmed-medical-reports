@@ -9,13 +9,13 @@
           params: { id: report.id },
         })
       "
-      class="flex space-x-10 cursor-pointer hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
+      class="house cursor-pointer hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
     >
       <div class="">
         {{ report.id }}
       </div>
       <div class="">
-        <input type="checkbox" class="" />
+        <input type="checkbox" class="mr-6" />
         <span class="text-lg inline-block"> Report {{ report.id }} </span>
       </div>
       <div class="truncate">
@@ -24,7 +24,7 @@
           {{ report.body }}
         </span>
       </div>
-      <div class="">Dates</div>
+      <div>Dates</div>
     </div>
   </div>
 </template>
@@ -46,4 +46,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.house {
+  display: grid;
+  grid-template-columns: 30px 150px auto 30px;
+}
 </style>

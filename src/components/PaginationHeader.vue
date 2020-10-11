@@ -61,9 +61,9 @@
       <button class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none">
         {{ page }} - 20 of {{ reportsCount }}
       </button>
-      <router-link :to="{ name: 'AllReports', query:{ page: page - 1} }"
+      <router-link tag="button" :disabled="page == 1" :to="{ name: 'AllReports', query:{ page: page - 1} }"
       rel="prev" 
-      class="hover:bg-gray-200 rounded-full px-2 py-2 mr-2 focus:outline-none">
+      class="rounded-full px-2 py-2 mr-2 focus:outline-none"  :class="[page == 1 ? 'hover:bg-white' : 'hover:bg-gray-200']">
         <svg
           class="h-4 inline-block"
           xmlns="http://www.w3.org/2000/svg"
@@ -76,9 +76,9 @@
           />
         </svg>
       </router-link>
-      <router-link :to="{ name: 'AllReports', query:{ page: page + 1} }"
+      <router-link tag="button" :disabled='reportsCount <= page * 20' :class="[reportsCount <= page * 20 ? 'hover:bg-white' : 'hover:bg-gray-200'] " :to="{ name: 'AllReports', query:{ page: page + 1} }"
       rel="next" 
-      class="hover:bg-gray-200 rounded-full px-2 py-2 focus:outline-none">
+      class="rounded-full px-2 py-2 focus:outline-none">
         <!-- bg-gray-200 -->
         <svg
           class="h-4 inline-block"
@@ -102,8 +102,17 @@ export default {
   name: "PaginationHeaderComponent.vue",
   data() {
     return {
-      pageCount: this.page + 20
+      pageCount: 1
     }
+  },
+  watch: {
+    page(newValue, oldValue) {
+      console.log('value of old: ',oldValue,' and value of new: ',newValue)
+      this.pageCount = newValue + 10
+    }
+  },
+  mounted () {
+    console.log('reports count: ',this.reportsCount)
   },
   created () {
     this.$store

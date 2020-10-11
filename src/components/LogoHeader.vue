@@ -84,16 +84,19 @@
             />
           </svg>
           <!-- <input type="button" class="cursor-default relative w-full rounded-md border border-red-500 bg-gray-200 pl-3 pr-10 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150"> -->
-          <input v-model="searchQuery"
-            @focus="isOpen = !isOpen"
+          <!-- @blur="isOpen = !isOpen" -->
+          <input
+            v-model="searchQuery"
             @blur="isOpen = !isOpen"
+            @focus="isOpen = !isOpen"
             @keypress="touch"
             type="text"
             class="rounded-md bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md py-3 pl-16 pr-5 placeholder-gray-600 w-full"
             placeholder="Search reports"
           />
           <svg
-            xmlns="http://www.w3.org/2000/svg" class="h-4 absolute boxxy2"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 absolute boxxy2"
             viewBox="0 0 512 512"
           >
             <title>ionicons-v5-b</title>
@@ -110,11 +113,9 @@
           leave-class="opacity-100 scale-100"
           leave-to-class="opacity-0 scale-95"
         >
-          <div
-            class="absolute -mt-1 w-full bg-white shadow-lg"
-            v-show="isOpen"
-          >
-            <ul v-if="showSearch"
+          <div class="absolute -mt-1 w-full bg-white shadow-lg" v-show="isOpen">
+            <ul
+              v-if="showSearch"
               tabindex="-1"
               role="listbox"
               aria-labelledby="listbox-label"
@@ -126,10 +127,18 @@
 
           Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
         -->
-              <li v-for="report in search" :key="report.id"
+              <li
+                v-for="report in search"
+                :key="report.id"
+                @click="
+                  $router.push({
+                    name: 'ReportDetail',
+                    params: { id: report.id },
+                  })
+                "
                 id="listbox-item-0"
                 role="option"
-                class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
+                class="childish text-gray-900 cursor-default relative py-2 pl-5 pr-9 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
               >
                 <div class="flex items-center space-x-3">
                   <svg
@@ -422,7 +431,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "LogoHeaderComponent",
   data() {
@@ -430,43 +439,45 @@ export default {
       isOpen: false,
       showSearch: false,
       searchStarted: false,
-      searchQuery: '',
-      page: 1
+      searchQuery: "",
+      page: 1,
     };
   },
-  mounted () {
-    return this.$store.dispatch('fetchReports', this.page)
+  mounted() {
+    return this.$store.dispatch("fetchReports", this.page);
   },
   methods: {
     touch() {
       // if (this.searchQuery.length) {
-        // this.showSearch = false
+      // this.showSearch = false
       // } else {
-        // this.showSearch = true
+      // this.showSearch = true
       // }
       // if (this.showSearch == '') {
       //   this.showSearch = false
       // }
       if (this.showSearch.length > 1) {
         this.showSearch = false;
-      }else{
+      } else {
         this.showSearch = true;
       }
-      console.log('the search length: ',this.searchQuery.length)
+      console.log("the search length: ", this.searchQuery.length);
       // this.showSearch = true
       this.search;
-    }
+    },
   },
   computed: {
     ...mapGetters(["fetchAllReports"]),
     search() {
-      console.log('the search: ',this.searchQuery)
-      console.log('showSearch value: ',this.showSearch)
-      console.log('the search computed length: ',this.searchQuery.length)
-      return this.fetchAllReports.filter( report => {
-        return report.body.toLowerCase().includes(this.searchQuery.toLowerCase())
-      } )
-    }
+      console.log("the search: ", this.searchQuery);
+      console.log("showSearch value: ", this.showSearch);
+      console.log("the search computed length: ", this.searchQuery.length);
+      return this.fetchAllReports.filter((report) => {
+        return report.body
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+    },
   },
 };
 </script>
@@ -480,5 +491,9 @@ export default {
 .boxxy2 {
   top: 16px;
   right: 18px;
+}
+
+.childish:last-child {
+  margin-bottom: 10px;
 }
 </style>
