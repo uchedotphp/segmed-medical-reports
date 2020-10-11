@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress';
 // import axios from 'axios'
+import store from '@/store';
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,21 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "condition-reports" */ "../views/ConditionReports.vue"
+      ),
+  },
+  {
+    path: "/report-detail/:id",
+    name: "ReportDetail",
+    beforeEnter(to, from, next) {
+      store.dispatch("fetchSingleReport", to.params.id).then( reponse => {
+        to.params.reportDetail = reponse
+        next();
+      })
+    },
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "report-detail" */ "../views/ReportDetail.vue"
       ),
   },
 ];

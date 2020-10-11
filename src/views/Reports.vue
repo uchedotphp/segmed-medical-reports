@@ -3,7 +3,12 @@
     <div
       v-for="report in fetchAllReports"
       :key="report.id"
-      @click="openReport"
+      @click="
+        $router.push({
+          name: 'ReportDetail',
+          params: { id: report.id },
+        })
+      "
       class="flex space-x-10 cursor-pointer hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
     >
       <div class="">
@@ -35,13 +40,6 @@ export default {
     ...mapGetters(["fetchAllReports"]),
     page() {
       return parseInt(this.$route.query.page) || 1;
-    },
-  },
-  methods: {
-    openReport() {
-      this.$router.push({
-        name: "Report",
-      });
     },
   },
 };

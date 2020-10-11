@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     reportsTotal: 0,
     reports: [],
+    report: {}
     // limit: 20
   },
   mutations: {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     SET_REPORTS_TOTAL(state, reportsTotal) {
       state.reportsTotal = reportsTotal;
     },
+    SET_REPORT(state, report){
+      state.report = report
+    }
   },
   actions: {
     fetchReports({ commit }, page) {
@@ -34,6 +38,15 @@ export default new Vuex.Store({
           console.error(error);
         });
     },
+
+    fetchSingleReport({ commit }, id){
+      return axios
+        .get("https://jsonplaceholder.typicode.com/posts/" + id)
+        .then(({ data }) => {
+          commit("SET_REPORT", data);
+          return data
+        });
+    }
   },
   getters: {
     fetchAllReports: (state) => state.reports,
