@@ -1,13 +1,55 @@
 <template>
-    <div>
-        All reports
+  <div class="ml-5">
+    <div
+      v-for="report in reports"
+      :key="report.title"
+      @click="openReport"
+      class="cursor-pointer truncate hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
+    >
+      <span class="mr-4">
+        {{ report.id }}
+      </span>
+      <input type="checkbox" class="ml-8" />
+      <span class="ml-10 text-lg inline-block">
+        Report {{ report.id }}
+      </span>
+      <span class="ml-20 font-bold">
+        {{ report.title }} - 
+      </span>
+      <span class="text-gray-600">
+        {{ report.body }}
+      </span>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'Reports'
+import axios from "axios";
+  export default {
+    name: 'Reports',
+    data() {
+    return {
+      reports: []
+    };
+  },
+  created() {
+    return axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then(({ data }) => {
+        this.reports = data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },
+  methods: {
+    openReport() {
+      this.$router.push({
+        name: "Report"
+      });
     }
+  }
+  }
 </script>
 
 <style lang="scss" scoped>
