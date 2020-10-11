@@ -5,7 +5,7 @@
       </span>
     <router-link
       class="report-badge-all w-1/5 px-3 pt-4 hover:bg-gray-200 text-red-500 font-bold"
-      to="/"
+      :to="{ name: 'AllReports' }"
     >
       <svg
         class="h-6 pr-4 pl-4 inline-block"
@@ -56,10 +56,10 @@
     </router-link>
     <router-link
       class="report-badge-good w-1/5 px-3 pt-4 hover:bg-gray-200 font-bold"
-      to="/"
+      :to="{ name: 'GoodReports' }"
     >
       <svg
-        class="h-6 pr-4 inline-block"
+        class="h-6 pr-4 pl-4 inline-block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
       >
@@ -83,10 +83,10 @@
     </router-link>
     <router-link
       class="report-badge-present w-1/5 px-3 pt-4 hover:bg-gray-200 font-bold"
-      to="/"
+      :to="{ name: 'ConditionReports' }"
     >
       <svg
-        class="h-6 pr-4 inline-block"
+        class="h-6 pr-4 pl-4 inline-block"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 512 512"
       >
