@@ -84,9 +84,10 @@
             />
           </svg>
           <!-- <input type="button" class="cursor-default relative w-full rounded-md border border-red-500 bg-gray-200 pl-3 pr-10 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150"> -->
-          <input
+          <input v-model="searchQuery"
             @focus="isOpen = !isOpen"
             @blur="isOpen = !isOpen"
+            @keypress="touch"
             type="text"
             class="rounded-md bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md py-3 pl-16 pr-5 placeholder-gray-600 w-full"
             placeholder="Search reports"
@@ -113,7 +114,7 @@
             class="absolute -mt-1 w-full bg-white shadow-lg"
             v-show="isOpen"
           >
-            <ul
+            <ul v-if="showSearch"
               tabindex="-1"
               role="listbox"
               aria-labelledby="listbox-label"
@@ -125,7 +126,7 @@
 
           Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
         -->
-              <li
+              <li v-for="report in search" :key="report.id"
                 id="listbox-item-0"
                 role="option"
                 class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
@@ -155,7 +156,7 @@
                     />
                   </svg>
                   <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
-                  <span class="pl-3 block truncate"> Zenith Transaction </span>
+                  <span class="px-3 block truncate"> {{ report.body }} </span>
                 </div>
 
                 <!--
@@ -165,11 +166,11 @@
           -->
                 <span class="absolute inset-y-0 right-0 flex items-center pr-4">
                   <!-- Heroicon name: check -->
-                  Oct 10
+                  <!-- Oct 10 -->
                 </span>
               </li>
 
-              <li
+              <!-- <li
                 id="listbox-item-0"
                 role="option"
                 class="text-gray-900 cursor-default relative py-2 pl-5 pr-9 mb-1 hover:bg-gray-200 border-l-2 border-white hover:border-red-500"
@@ -198,20 +199,12 @@
                       stroke-width="32"
                     />
                   </svg>
-                  <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
                   <span class="pl-3 block truncate"> Zenith Transaction </span>
                 </div>
-
-                <!--
-            Checkmark, only display for selected option.
-
-            Highlighted: "text-white", Not Highlighted: "text-indigo-600"
-          -->
                 <span class="absolute inset-y-0 right-0 flex items-center pr-4">
-                  <!-- Heroicon name: check -->
                   Oct 10
                 </span>
-              </li>
+              </li> -->
 
               <!-- More options... -->
             </ul>
@@ -429,12 +422,51 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "LogoHeaderComponent",
   data() {
     return {
       isOpen: false,
+      showSearch: false,
+      searchStarted: false,
+      searchQuery: '',
+      page: 1
     };
+  },
+  mounted () {
+    return this.$store.dispatch('fetchReports', this.page)
+  },
+  methods: {
+    touch() {
+      // if (this.searchQuery.length) {
+        // this.showSearch = false
+      // } else {
+        // this.showSearch = true
+      // }
+      // if (this.showSearch == '') {
+      //   this.showSearch = false
+      // }
+      if (this.showSearch.length > 1) {
+        this.showSearch = false;
+      }else{
+        this.showSearch = true;
+      }
+      console.log('the search length: ',this.searchQuery.length)
+      // this.showSearch = true
+      this.search;
+    }
+  },
+  computed: {
+    ...mapGetters(["fetchAllReports"]),
+    search() {
+      console.log('the search: ',this.searchQuery)
+      console.log('showSearch value: ',this.showSearch)
+      console.log('the search computed length: ',this.searchQuery.length)
+      return this.fetchAllReports.filter( report => {
+        return report.body.toLowerCase().includes(this.searchQuery.toLowerCase())
+      } )
+    }
   },
 };
 </script>

@@ -2,19 +2,24 @@
   <div class="ml-5">
     <div
       v-for="report in fetchAllReports"
-      :key="report.title"
+      :key="report.id"
       @click="openReport"
-      class="cursor-pointer truncate hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
+      class="flex space-x-10 cursor-pointer hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
     >
-      <span class="mr-4">
+      <div class="">
         {{ report.id }}
-      </span>
-      <input type="checkbox" class="ml-8" />
-      <span class="ml-10 text-lg inline-block"> Report {{ report.id }} </span>
-      <span class="ml-20 font-bold"> {{ report.title }} - </span>
-      <span class="text-gray-600">
-        {{ report.body }}
-      </span>
+      </div>
+      <div class="">
+        <input type="checkbox" class="" />
+        <span class="text-lg inline-block"> Report {{ report.id }} </span>
+      </div>
+      <div class="truncate">
+        <span class="font-bold"> {{ report.title }} - </span>
+        <span class="text-gray-600">
+          {{ report.body }}
+        </span>
+      </div>
+      <div class="">Dates</div>
     </div>
   </div>
 </template>
@@ -24,16 +29,13 @@ import { mapGetters } from "vuex";
 export default {
   name: "Reports",
   created() {
-    this.$store
-      .dispatch("fetchReports",
-      this.page
-      )
+    this.$store.dispatch("fetchReports", this.page);
   },
   computed: {
     ...mapGetters(["fetchAllReports"]),
     page() {
-      return parseInt(this.$route.query.page) || 1
-    }
+      return parseInt(this.$route.query.page) || 1;
+    },
   },
   methods: {
     openReport() {
