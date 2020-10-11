@@ -59,9 +59,11 @@
     </div>
     <div>
       <button class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none">
-        1-50 of 13,471
+        {{ page }} - 20 of {{ reportsCount }}
       </button>
-      <button class="hover:bg-gray-200 rounded-full px-2 py-2 mr-2 focus:outline-none">
+      <router-link :to="{ name: 'AllReports', query:{ page: page - 1} }"
+      rel="prev" 
+      class="hover:bg-gray-200 rounded-full px-2 py-2 mr-2 focus:outline-none">
         <svg
           class="h-4 inline-block"
           xmlns="http://www.w3.org/2000/svg"
@@ -73,8 +75,10 @@
             style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px"
           />
         </svg>
-      </button>
-      <button class="hover:bg-gray-200 rounded-full px-2 py-2 focus:outline-none">
+      </router-link>
+      <router-link :to="{ name: 'AllReports', query:{ page: page + 1} }"
+      rel="next" 
+      class="hover:bg-gray-200 rounded-full px-2 py-2 focus:outline-none">
         <!-- bg-gray-200 -->
         <svg
           class="h-4 inline-block"
@@ -87,14 +91,33 @@
             style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:48px"
           />
         </svg>
-      </button>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
 export default {
-  name: "PaginationHeaderComponent.vue"
+  name: "PaginationHeaderComponent.vue",
+  data() {
+    return {
+      pageCount: this.page + 20
+    }
+  },
+  created () {
+    this.$store
+      .dispatch("fetchReports", 
+        this.page,
+      )
+  },
+  computed: {
+    page() {
+      return parseInt(this.$route.query.page) || 1
+    },
+    ...mapGetters(["reportsCount", "fetchAllReports"]),
+    ...mapState(['reports'])
+  }
 };
 </script>
 
