@@ -5,8 +5,10 @@
         <span class="text-2xl">
             {{ reportDetail.title }}
         </span>
-        <span class="bg-green-300 pl-2 py-1 ml-2 text-sm rounded">
-          #{{ reportDetail.tag }}
+        <span 
+        :class="[reportDetail.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
+        class="pl-2 py-1 ml-2 text-sm rounded">
+          #{{ getTag }}
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
       </div>
@@ -172,7 +174,15 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  computed: {
+    getTag(){
+      const exits = localStorage.getItem("segmed_reports");
+      const storedReports = JSON.parse(exits);
+      const report = storedReports.find((report) => report.id == this.$route.params.id);
+      return report.tag
+    },
+  },
 };
 </script>
 

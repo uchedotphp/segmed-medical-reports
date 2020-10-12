@@ -96,7 +96,6 @@ export default new Vuex.Store({
     changeReportTag({ commit }, { tag, id }) {
       const exits = localStorage.getItem("segmed_reports");
       const storedReports = JSON.parse(exits);
-      console.log('old stored reports before: ',storedReports)
       const report = storedReports.find((report) => report.id == id);
       report.tag = tag;
       storedReports.splice((id-1), 1, report);

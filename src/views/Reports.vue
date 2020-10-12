@@ -26,7 +26,13 @@
             {{ report.body }}
           </span>
         </div>
-        <div class="bg-green-300">#{{ report.tag }}</div>
+        <div
+          :class="[
+            report.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300',
+          ]"
+        >
+          #{{ report.tag }}
+        </div>
       </div>
     </div>
   </div>
@@ -55,6 +61,6 @@ export default {
 <style lang="scss" scoped>
 .house {
   display: grid;
-  grid-template-columns: 30px 150px auto 85px;
+  grid-template-columns: 30px 150px auto 110px;
 }
 </style>

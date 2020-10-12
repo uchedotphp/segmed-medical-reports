@@ -210,7 +210,7 @@
         </svg>
       </button>
       <button
-        @click="open"
+        @focus="open"
         class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none"
       >
         <svg
@@ -357,22 +357,20 @@ export default {
     return {
       pageCount: 1,
       isOpen: false,
-      tag: ''
+      tag: this.getTag
     };
-  },
-  mounted() {
-    console.log("reports count: ", this.reportsCount);
-    console.log('route stuff ', this.$route.params.id)
   },
   created() {
     this.$store.dispatch("fetchReports", this.page);
+  },
+  mounted () {
+    console.log('your tag: ',this.getTag);
   },
   methods: {
     reload() {
       location.reload();
     },
     change(){
-      // console.log('the value: ',this.tag)
       this.$store.dispatch('changeReportTag', 
       {
         tag: this.tag,
@@ -384,6 +382,12 @@ export default {
     }
   },
   computed: {
+    getTag(){
+      const exits = localStorage.getItem("segmed_reports");
+      const storedReports = JSON.parse(exits);
+      const report = storedReports.find((report) => report.id == this.$route.params.id);
+      return report.tag
+    },
     page() {
       return parseInt(this.$route.query.page) || 1;
     },
