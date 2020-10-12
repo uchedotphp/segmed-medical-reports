@@ -89,8 +89,9 @@
         </svg>
       </button>
     </div>
-    <div v-else>
-      <button @click="$router.go(-1)"
+    <div v-else class="relative">
+      <button
+        @click="$router.go(-1)"
         class="hover:bg-gray-200 rounded-full p-2 text-sm ml-2 mr-4 focus:outline-none"
       >
         <svg
@@ -208,7 +209,7 @@
           />
         </svg>
       </button>
-      <button
+      <button @click="open"
         class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none"
       >
         <svg
@@ -236,19 +237,49 @@
           />
         </svg>
       </button>
+
+      <div v-show="isOpen"
+        class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg"
+      >
+        <div
+          class="rounded-md bg-white shadow-xs"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <div class="py-1">
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-green-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+              role="menuitem"
+              >#goodReport</a
+            >
+          </div>
+          <div class="border-t border-gray-100"></div>
+          <div class="py-1">
+            <a
+              href="#"
+              class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-red-300 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+              role="menuitem"
+              >#conditionPresent</a
+            >
+          </div>
+          <div class="border-t border-gray-100"></div>
+        </div>
+      </div>
     </div>
     <div>
       <button
         class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none"
       >
-        {{ page }} - 20 of {{ reportsCount }}
+        {{ page }} - 100 of {{ reportsCount }}
       </button>
       <router-link
         tag="button"
         :disabled="page == 1"
         :to="{ name: 'AllReports', query: { page: page - 1 } }"
         rel="prev"
-        class="rounded-full px-2 py-2 mr-2 focus:outline-none"
+        class="cursor-not-allowed rounded-full px-2 py-2 mr-2 focus:outline-none"
         :class="[page == 1 ? 'hover:bg-white' : 'hover:bg-gray-200']"
       >
         <svg
@@ -269,7 +300,7 @@
           />
         </svg>
       </router-link>
-      <router-link
+      <!-- <router-link
         tag="button"
         :disabled="reportsCount <= page * 20"
         :class="[
@@ -278,8 +309,14 @@
         :to="{ name: 'AllReports', query: { page: page + 1 } }"
         rel="next"
         class="rounded-full px-2 py-2 focus:outline-none"
+      > -->
+      <router-link
+        tag="button"
+        :disabled="true"
+        :to="{ name: 'AllReports', query: { page: page + 1 } }"
+        rel="next"
+        class="cursor-not-allowed rounded-full px-2 py-2 hover:bg-white focus:outline-none"
       >
-        <!-- bg-gray-200 -->
         <svg
           class="h-4 inline-block"
           xmlns="http://www.w3.org/2000/svg"
@@ -309,6 +346,7 @@ export default {
   data() {
     return {
       pageCount: 1,
+      isOpen: false
     };
   },
   watch: {
@@ -327,6 +365,9 @@ export default {
     reload() {
       location.reload();
     },
+    open(){
+      this.isOpen = this.isOpen ? false : true
+    }
   },
   computed: {
     page() {
