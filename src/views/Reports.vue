@@ -18,13 +18,13 @@
         <input type="checkbox" class="mr-6" />
         <span class="text-lg inline-block"> Report {{ report.id }} </span>
       </div>
-      <div class="truncate">
+      <div class="truncate mr-4">
         <span class="font-bold"> {{ report.title }} - </span>
         <span class="text-gray-600">
           {{ report.body }}
         </span>
       </div>
-      <div>Dates</div>
+      <div class="bg-green-300">#{{ report.tag }}</div>
     </div>
   </div>
 </template>
@@ -48,6 +48,6 @@ export default {
 <style lang="scss" scoped>
 .house {
   display: grid;
-  grid-template-columns: 30px 150px auto 30px;
+  grid-template-columns: 30px 150px auto 85px;
 }
 </style>
