@@ -13,6 +13,11 @@ export default new Vuex.Store({
     // limit: 20
   },
   mutations: {
+    REPLACE_REPORTS(state, reports){
+      localStorage.removeItem('segmed_reports')
+      localStorage.setItem("segmed_reports", JSON.stringify(reports));
+      state.reports = reports
+    },
     SET_REPORTS(state, reports) {
       if (localStorage.getItem("segmed_reports") === null) {
         localStorage.setItem("segmed_reports", JSON.stringify(reports));
@@ -75,8 +80,8 @@ export default new Vuex.Store({
         const storedReports = JSON.parse(exits);
         const report = storedReports.find((report) => report.id == id);
         // commit("SET_REPORT", report);
-        console.log("yur report: ", report);
-        console.log("the id: ", id);
+        // console.log("yur report: ", report);
+        // console.log("the id: ", id);
         return report;
       } else {
         return axios
@@ -88,15 +93,14 @@ export default new Vuex.Store({
       }
     },
 
-    changeReportTag({}, { tag, id }) {
-      console.log("this is the tag gotten: ", tag);
-      console.log("this is the id gotten: ", id);
+    changeReportTag({ commit }, { tag, id }) {
       const exits = localStorage.getItem("segmed_reports");
       const storedReports = JSON.parse(exits);
+      console.log('old stored reports before: ',storedReports)
       const report = storedReports.find((report) => report.id == id);
-      console.log('report before change: ',report)
       report.tag = tag;
-      console.log("report after change: ", report);
+      storedReports.splice((id-1), 1, report);
+      commit("REPLACE_REPORTS", storedReports);
     },
   },
   getters: {
