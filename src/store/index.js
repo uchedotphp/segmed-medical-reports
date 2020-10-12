@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
@@ -72,7 +73,6 @@ export default new Vuex.Store({
       if (localStorage.getItem("segmed_reports") !== null) {
         const exits = localStorage.getItem("segmed_reports");
         const storedReports = JSON.parse(exits);
-        console.log("fetching ", storedReports);
         const report = storedReports.find((report) => report.id == id);
         // commit("SET_REPORT", report);
         console.log("yur report: ", report);
@@ -86,6 +86,17 @@ export default new Vuex.Store({
             return data;
           });
       }
+    },
+
+    changeReportTag({}, { tag, id }) {
+      console.log("this is the tag gotten: ", tag);
+      console.log("this is the id gotten: ", id);
+      const exits = localStorage.getItem("segmed_reports");
+      const storedReports = JSON.parse(exits);
+      const report = storedReports.find((report) => report.id == id);
+      console.log('report before change: ',report)
+      report.tag = tag;
+      console.log("report after change: ", report);
     },
   },
   getters: {

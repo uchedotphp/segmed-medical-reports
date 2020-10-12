@@ -209,8 +209,8 @@
           />
         </svg>
       </button>
-      <button @click="open"
-      @blur="open"
+      <button
+        @click="open"
         class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none"
       >
         <svg
@@ -239,8 +239,9 @@
         </svg>
       </button>
 
-      <div v-show="isOpen"
-        class="origin-top-right absolute right-0 mt-2 w-32 rounded-md shadow-lg"
+      <div
+        v-show="isOpen"
+        class="origin-top-right absolute right-0 mt-2 w-40 rounded-md shadow-lg"
       >
         <div
           class="rounded-md bg-white shadow-xs"
@@ -248,8 +249,8 @@
           aria-orientation="vertical"
           aria-labelledby="options-menu"
         >
-          <div class="py-1">
-            <a
+          <!-- <div class="py-1">
+            <a value='hi' @click="change(val)"
               href="#"
               class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-green-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
               role="menuitem"
@@ -264,6 +265,14 @@
               role="menuitem"
               >#conditionPresent</a
             >
+          </div> -->
+          <div class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-green-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
+            <input @change="change" type="radio" id="goodReport" v-model="tag" value="goodReport" />
+            <label class="ml-2" for="goodReport">Good Report</label>
+          </div>
+          <div  class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-red-300 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
+            <input @change="change" type="radio" id="conditionReport" v-model="tag" value="conditionReport" />
+            <label class="ml-2" for="conditionReport">Condition Report</label>
           </div>
           <div class="border-t border-gray-100"></div>
         </div>
@@ -347,17 +356,13 @@ export default {
   data() {
     return {
       pageCount: 1,
-      isOpen: false
+      isOpen: false,
+      tag: ''
     };
-  },
-  watch: {
-    page(newValue, oldValue) {
-      console.log("value of old: ", oldValue, " and value of new: ", newValue);
-      this.pageCount = newValue + 10;
-    },
   },
   mounted() {
     console.log("reports count: ", this.reportsCount);
+    console.log('route stuff ', this.$route.params.id)
   },
   created() {
     this.$store.dispatch("fetchReports", this.page);
@@ -366,8 +371,16 @@ export default {
     reload() {
       location.reload();
     },
-    open(){
-      this.isOpen = this.isOpen ? false : true
+    change(){
+      // console.log('the value: ',this.tag)
+      this.$store.dispatch('changeReportTag', 
+      {
+        tag: this.tag,
+        id: this.$route.params.id
+      })
+    },
+    open() {
+      this.isOpen = this.isOpen ? false : true;
     }
   },
   computed: {
