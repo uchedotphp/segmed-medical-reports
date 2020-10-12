@@ -1,8 +1,8 @@
 <template>
   <div class="flex px-8 border-b border-gray-300">
     <span class="text-xs mr-3 self-center text-gray-600"> S/N </span>
-    <router-link
-      class="report-badge-all w-1/5 mx-3 pt-4 hover:bg-gray-200 text-red-500 font-bold"
+    <router-link exact-active-class="report-badge-all"
+      class="w-1/5 mx-3 pt-4 hover:bg-gray-200 text-red-500 font-bold"
       :to="{ name: 'AllReports' }"
     >
       <svg
@@ -85,8 +85,8 @@
       </svg>
       <span class="text-sm"> All Reports (100) </span>
     </router-link>
-    <router-link
-      class="report-badge-good w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
+    <router-link exact-active-class="report-badge-good"
+      class="w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'GoodReports' }"
     >
       <svg
@@ -114,8 +114,8 @@
       </svg>
       <span class="text-sm bg-green-300"> #Good Report(12) </span>
     </router-link>
-    <router-link
-      class="report-badge-present w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
+    <router-link exact-active-class="report-badge-present"
+      class="w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'ConditionReports' }"
     >
       <svg
@@ -152,7 +152,7 @@
 
 <script>
 export default {
-  name: "NavigationMenuComponent.vue",
+  name: "NavigationMenuComponent.vue"
 };
 </script>
 
