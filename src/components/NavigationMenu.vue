@@ -85,7 +85,7 @@
       </svg>
       <span class="text-sm"> All Reports (100) </span>
     </router-link>
-    <router-link exact-active-class="report-badge-good"
+    <!-- <router-link exact-active-class="report-badge-good"
       class="w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'GoodReports' }"
     >
@@ -146,7 +146,7 @@
         />
       </svg>
       <span class="text-sm bg-red-300"> #Condition Present(12) </span>
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 
