@@ -2,7 +2,7 @@
   <div id="app">
     <LogoHeader />
     <PaginationHeader />
-    <NavigationMenu />
+    <!-- <NavigationMenu /> -->
     <router-view :key="$route.fullPath" />
   </div>
 </template>
@@ -10,13 +10,13 @@
 <script>
 import LogoHeader from "@/components/LogoHeader";
 import PaginationHeader from "@/components/PaginationHeader";
-import NavigationMenu from "@/components/NavigationMenu";
+// import NavigationMenu from "@/components/NavigationMenu";
 
 export default {
   components: {
     LogoHeader,
     PaginationHeader,
-    NavigationMenu,
+    // NavigationMenu,
   },
 };
 </script>

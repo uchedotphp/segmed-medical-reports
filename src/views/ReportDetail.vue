@@ -6,7 +6,7 @@
             {{ reportDetail.title }}
         </span>
         <span class="bg-green-300 pl-2 py-1 ml-2 text-sm rounded">
-          #goodReport
+          #{{ reportDetail.tag }}
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
       </div>

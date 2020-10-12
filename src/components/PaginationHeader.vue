@@ -11,7 +11,7 @@
           d="M98,190.06,237.78,353.18a24,24,0,0,0,36.44,0L414,190.06c13.34-15.57,2.28-39.62-18.22-39.62H116.18C95.68,150.44,84.62,174.49,98,190.06Z"
         />
       </svg> -->
-      <button class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none">
+      <button @click="reload" class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none">
         <svg
           class="h-5 inline-block"
           xmlns="http://www.w3.org/2000/svg"
@@ -119,6 +119,11 @@ export default {
       .dispatch("fetchReports", 
         this.page,
       )
+  },
+  methods: {
+    reload() {
+      location.reload();
+    }
   },
   computed: {
     page() {
