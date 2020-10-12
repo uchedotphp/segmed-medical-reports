@@ -1,8 +1,6 @@
 <template>
   <div class="flex px-8 border-b border-gray-300">
-    <span class="text-xs mr-3 self-center text-gray-600">
-        S/N
-      </span>
+    <span class="text-xs mr-3 self-center text-gray-600"> S/N </span>
     <router-link
       class="report-badge-all w-1/5 mx-3 pt-4 hover:bg-gray-200 text-red-500 font-bold"
       :to="{ name: 'AllReports' }"
@@ -15,139 +13,180 @@
         <title>ionicons-v5-i</title>
         <path
           d="M384,80H128c-26,0-43,14-48,40L48,272V384a48.14,48.14,0,0,0,48,48H416a48.14,48.14,0,0,0,48-48V272L432,120C427,93,409,80,384,80Z"
-          style="fill:none;stroke:#D93925;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
         <line
           x1="48"
           y1="272"
           x2="192"
           y2="272"
-          style="fill:none;stroke:#D93925;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
         <line
           x1="320"
           y1="272"
           x2="464"
           y2="272"
-          style="fill:none;stroke:#D93925;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
         <path
           d="M192,272a64,64,0,0,0,128,0"
-          style="fill:none;stroke:#D93925;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
         <line
           x1="144"
           y1="144"
           x2="368"
           y2="144"
-          style="fill:none;stroke:#D93925;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
         <line
           x1="128"
           y1="208"
           x2="384"
           y2="208"
-          style="fill:none;stroke:#D93925;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          style="
+            fill: none;
+            stroke: #d93925;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 32px;
+          "
         />
       </svg>
-      <span class="text-sm">
-        All Reports
-      </span>
+      <span class="text-sm"> All Reports (100) </span>
     </router-link>
     <router-link
       class="report-badge-good w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'GoodReports' }"
     >
       <svg
-        class="h-6 px-4 inline-block"
         xmlns="http://www.w3.org/2000/svg"
+        class="ionicon h-6 px-4 inline-block"
         viewBox="0 0 512 512"
       >
-        <title>ionicons-v5-a</title>
-        <path
-          d="M434.8,137.65,285.44,69.55c-16.19-7.4-42.69-7.4-58.88,0L77.3,137.65c-17.6,8-17.6,21.09,0,29.09l148,67.5c16.89,7.7,44.69,7.7,61.58,0l148-67.5C452.4,158.74,452.4,145.64,434.8,137.65Z"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+        <title>Accessibility</title>
+        <circle
+          fill="none"
+          stroke="currentColor"
+          stroke-linejoin="round"
+          stroke-width="32"
+          cx="256"
+          cy="56"
+          r="40"
         />
         <path
-          d="M160,308.52,77.3,345.63c-17.6,8-17.6,21.1,0,29.1l148,67.5c16.89,7.69,44.69,7.69,61.58,0l148-67.5c17.6-8,17.6-21.1,0-29.1l-79.94-38.47"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
-        />
-        <path
-          d="M160,204.48,77.2,241.64c-17.6,8-17.6,21.1,0,29.1l148,67.49c16.89,7.7,44.69,7.7,61.58,0l148-67.49c17.7-8,17.7-21.1.1-29.1L352,204.48"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          fill="none"
+          stroke="currentColor"
+          stroke-linejoin="round"
+          stroke-width="32"
+          d="M204.23 274.44c2.9-18.06 4.2-35.52-.5-47.59-4-10.38-12.7-16.19-23.2-20.15L88 176.76c-12-4-23.21-10.7-24-23.94-1-17 14-28 29-24 0 0 88 31.14 163 31.14s162-31 162-31c18-5 30 9 30 23.79 0 14.21-11 19.21-24 23.94l-88 31.91c-8 3-21 9-26 18.18-6 10.75-5 29.53-2.1 47.59l5.9 29.63 37.41 163.9c2.8 13.15-6.3 25.44-19.4 27.74S308 489 304.12 476.28l-37.56-115.93q-2.71-8.34-4.8-16.87L256 320l-5.3 21.65q-2.52 10.35-5.8 20.48L208 476.18c-4 12.85-14.5 21.75-27.6 19.46s-22.4-15.59-19.46-27.74l37.39-163.83z"
         />
       </svg>
-      <span class="text-sm bg-green-300">
-        #Good Report(12)
-      </span>
+      <span class="text-sm bg-green-300"> #Good Report(12) </span>
     </router-link>
     <router-link
       class="report-badge-present w-1/5 mx-3 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'ConditionReports' }"
     >
       <svg
-        class="h-6 px-4 inline-block"
         xmlns="http://www.w3.org/2000/svg"
+        class="ionicon h-6 px-4 inline-block"
         viewBox="0 0 512 512"
       >
-        <title>ionicons-v5-a</title>
-        <path
-          d="M434.8,137.65,285.44,69.55c-16.19-7.4-42.69-7.4-58.88,0L77.3,137.65c-17.6,8-17.6,21.09,0,29.09l148,67.5c16.89,7.7,44.69,7.7,61.58,0l148-67.5C452.4,158.74,452.4,145.64,434.8,137.65Z"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+        <title>Medkit</title>
+        <rect
+          x="32"
+          y="112"
+          width="448"
+          height="352"
+          rx="48"
+          ry="48"
+          fill="none"
+          stroke="currentColor"
+          stroke-linejoin="round"
+          stroke-width="32"
         />
         <path
-          d="M160,308.52,77.3,345.63c-17.6,8-17.6,21.1,0,29.1l148,67.5c16.89,7.69,44.69,7.69,61.58,0l148-67.5c17.6-8,17.6-21.1,0-29.1l-79.94-38.47"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
-        />
-        <path
-          d="M160,204.48,77.2,241.64c-17.6,8-17.6,21.1,0,29.1l148,67.49c16.89,7.7,44.69,7.7,61.58,0l148-67.49c17.7-8,17.7-21.1.1-29.1L352,204.48"
-          style="fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px"
+          d="M144 112V80a32 32 0 0132-32h160a32 32 0 0132 32v32M256 208v160M336 288H176"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="32"
         />
       </svg>
-      <span class="text-sm bg-red-300">
-        #Condition Present(12)
-      </span>
+      <span class="text-sm bg-red-300"> #Condition Present(12) </span>
     </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: "NavigationMenuComponent.vue"
+  name: "NavigationMenuComponent.vue",
 };
 </script>
 
 <style lang="scss" scoped>
-  .report-badge-all::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: red;
-    height: 4px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-top: 15px;
-  }
+.report-badge-all::after {
+  content: "";
+  display: block;
+  width: 100%;
+  background-color: red;
+  height: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 15px;
+}
 
-  .report-badge-good::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: green;
-    height: 4px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-top: 15px;
-  }
+.report-badge-good::after {
+  content: "";
+  display: block;
+  width: 100%;
+  background-color: green;
+  height: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 15px;
+}
 
-  .report-badge-present::after {
-    content: '';
-    display: block;
-    width: 100%;
-    background-color: blue;
-    height: 4px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-top: 15px;
-  }
+.report-badge-present::after {
+  content: "";
+  display: block;
+  width: 100%;
+  background-color: blue;
+  height: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  margin-top: 15px;
+}
 </style>

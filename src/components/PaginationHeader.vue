@@ -210,6 +210,7 @@
         </svg>
       </button>
       <button @click="open"
+      @blur="open"
         class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none"
       >
         <svg
