@@ -192,8 +192,8 @@
           />
           <path d="M256 397.25a20 20 0 1120-20 20 20 0 01-20 20z" />
         </svg>
-        Pardon me i am still fixing the label button to refresh the label's tag
-        in the body
+        Pardon me i am still fixing the select label button to refresh the label's tag
+        in the body immediately there's a change.
       </span>
     </div>
   </div>
