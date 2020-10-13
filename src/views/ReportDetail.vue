@@ -5,10 +5,16 @@
         <span class="text-2xl">
             {{ reportDetail.title }}
         </span>
-        <span 
+        <span v-if="receivedTag"
         :class="[receivedTag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
         class="pl-2 py-1 ml-2 text-sm rounded">
           #{{ receivedTag }}
+          <button class="hover:bg-black hover:text-white px-2">x</button>
+        </span>
+        <span v-else
+        :class="[reportDetail.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
+        class="pl-2 py-1 ml-2 text-sm rounded">
+          #{{ reportDetail.tag }}
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
       </div>
@@ -177,15 +183,7 @@ export default {
     receivedTag: {
       type: String
     }
-  },
-  computed: {
-    getTag(){
-      const exits = localStorage.getItem("segmed_reports");
-      const storedReports = JSON.parse(exits);
-      const report = storedReports.find((report) => report.id == this.$route.params.id);
-      return report.tag
-    },
-  },
+  }
 };
 </script>
 

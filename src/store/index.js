@@ -9,6 +9,8 @@ export default new Vuex.Store({
   state: {
     reportsTotal: 0,
     reports: [],
+    goodReports: [],
+    conditionReports: [],
     report: {},
     // limit: 20
   },
@@ -29,6 +31,9 @@ export default new Vuex.Store({
         // exits.push(localStorage.getItem("segmed_reports"))
         // console.log("reports from local that exists: ", JSON.parse(exits));
       }
+    },
+    SET_GOOD_REPORTS(state, goodReports){
+      state.goodReports.push(goodReports)
     },
     SET_REPORTS_TOTAL(state, reportsTotal) {
       state.reportsTotal = reportsTotal;

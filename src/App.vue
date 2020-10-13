@@ -1,34 +1,30 @@
 <template>
   <div id="app">
     <LogoHeader />
-    <PaginationHeader @changeTagStuff='sendTag' />
-    <!-- <NavigationMenu /> -->
-    <router-view :receivedTag='receivedTag' :key="$route.fullPath" />
+    <PaginationHeader @changeTagStuff="sendTag" />
+    <router-view :receivedTag="receivedTag" :key="$route.fullPath" />
   </div>
 </template>
 
 <script>
 import LogoHeader from "@/components/LogoHeader";
 import PaginationHeader from "@/components/PaginationHeader";
-// import NavigationMenu from "@/components/NavigationMenu";
 
 export default {
   components: {
     LogoHeader,
-    PaginationHeader,
-    // NavigationMenu    
+    PaginationHeader
   },
   data() {
     return {
-      receivedTag: 'goodReport'
-    }
+      receivedTag: '',
+    };
   },
   methods: {
-      sendTag(value){
-        console.log('received tag: ',value)
-        this.receivedTag = value        
-      }
+    sendTag(value) {
+      this.receivedTag = value;
     },
+  }
 };
 </script>
 <style lang="scss">

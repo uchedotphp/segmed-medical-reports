@@ -358,15 +358,11 @@ export default {
     return {
       pageCount: 1,
       isOpen: false,
-      // tag: this.getTag
       tag: ''
     };
   },
   created() {
     this.$store.dispatch("fetchReports", this.page);
-  },
-  mounted () {
-    // console.log('your tag: ',this.getTag);
   },
   methods: {
     reload() {
@@ -382,7 +378,6 @@ export default {
     },
     open() {
       this.isOpen = this.isOpen ? false : true;
-      // console.log('he')
     },
     close(){
       setTimeout(() => {
@@ -392,12 +387,6 @@ export default {
     }
   },
   computed: {
-    getTag(){
-      const exits = localStorage.getItem("segmed_reports");
-      const storedReports = JSON.parse(exits);
-      const report = storedReports.find((report) => report.id == this.$route.params.id);
-      return report.tag
-    },
     page() {
       return parseInt(this.$route.query.page) || 1;
     },
