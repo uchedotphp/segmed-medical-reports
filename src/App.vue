@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <LogoHeader />
-    <PaginationHeader />
+    <PaginationHeader @changeTagStuff='sendTag' />
     <!-- <NavigationMenu /> -->
-    <router-view :key="$route.fullPath" />
+    <router-view :receivedTag='receivedTag' :key="$route.fullPath" />
   </div>
 </template>
 
@@ -16,8 +16,19 @@ export default {
   components: {
     LogoHeader,
     PaginationHeader,
-    // NavigationMenu,
+    // NavigationMenu    
   },
+  data() {
+    return {
+      receivedTag: 'goodReport'
+    }
+  },
+  methods: {
+      sendTag(value){
+        console.log('received tag: ',value)
+        this.receivedTag = value        
+      }
+    },
 };
 </script>
 <style lang="scss">

@@ -6,9 +6,9 @@
             {{ reportDetail.title }}
         </span>
         <span 
-        :class="[reportDetail.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
+        :class="[receivedTag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
         class="pl-2 py-1 ml-2 text-sm rounded">
-          #{{ getTag }}
+          #{{ receivedTag }}
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
       </div>
@@ -173,6 +173,9 @@ export default {
     reportDetail: {
       type: Object,
       required: true
+    },
+    receivedTag: {
+      type: String
     }
   },
   computed: {

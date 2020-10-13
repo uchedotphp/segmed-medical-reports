@@ -211,6 +211,7 @@
       </button>
       <button
         @focus="open"
+        @blur="close"
         class="hover:bg-gray-200 rounded-full p-2 text-sm mr-4 focus:outline-none"
       >
         <svg
@@ -357,20 +358,22 @@ export default {
     return {
       pageCount: 1,
       isOpen: false,
-      tag: this.getTag
+      // tag: this.getTag
+      tag: ''
     };
   },
   created() {
     this.$store.dispatch("fetchReports", this.page);
   },
   mounted () {
-    console.log('your tag: ',this.getTag);
+    // console.log('your tag: ',this.getTag);
   },
   methods: {
     reload() {
       location.reload();
     },
     change(){
+      this.$emit('changeTagStuff', this.tag)
       this.$store.dispatch('changeReportTag', 
       {
         tag: this.tag,
@@ -379,6 +382,13 @@ export default {
     },
     open() {
       this.isOpen = this.isOpen ? false : true;
+      // console.log('he')
+    },
+    close(){
+      setTimeout(() => {
+        this.isOpen = this.isOpen ? false : true;
+        console.log('ha')
+      }, 2000);
     }
   },
   computed: {
