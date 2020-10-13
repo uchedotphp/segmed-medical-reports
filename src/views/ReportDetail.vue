@@ -3,18 +3,28 @@
     <div class="flex justify-between">
       <div class="">
         <span class="text-2xl">
-            {{ reportDetail.title }}
+          {{ reportDetail.title }}
         </span>
-        <span v-if="receivedTag"
-        :class="[receivedTag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
-        class="pl-2 py-1 ml-2 text-sm rounded">
-          #{{ receivedTag }}
+        <span
+          v-if="receivedTag"
+          :class="[
+            receivedTag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300',
+          ]"
+          class="pl-2 py-1 ml-2 text-sm rounded"
+        >
+          #{{ receivedTag }}1
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
-        <span v-else
-        :class="[reportDetail.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300']"
-        class="pl-2 py-1 ml-2 text-sm rounded">
-          #{{ reportDetail.tag }}
+        <span
+          v-else
+          :class="[
+            reportDetail.tag == 'conditionReport'
+              ? 'bg-red-300'
+              : 'bg-green-300',
+          ]"
+          class="pl-2 py-1 ml-2 text-sm rounded"
+        >
+          #{{ reportDetail.tag }}2
           <button class="hover:bg-black hover:text-white px-2">x</button>
         </span>
       </div>
@@ -59,37 +69,24 @@
     </div>
     <div class="flex justify-between my-6">
       <div class="">
-        <span class="font-bold text-lg">
-          Uchechukwu Prince Nwulu  
-        </span> 
-        [Note: <span class="text-red-500">
-          clicking label </span>
-          <svg
+        <span class="font-bold text-lg"> Uchechukwu Prince Nwulu </span>
+        [Note: <span class="text-red-500"> clicking label </span>
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           class="ionicon h-5 inline-block"
           viewBox="0 0 512 512"
         >
           <title>Pricetags</title>
           <path
-            d="M403.29 32H280.36a14.46 14.46 0 00-10.2 4.2L24.4 281.9a28.85 28.85 0 000 40.7l117 117a28.86 28.86 0 0040.71 0L427.8 194a14.46 14.46 0 004.2-10.2v-123A28.66 28.66 0 00403.29 32z"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            d="M448 183.8v-123A44.66 44.66 0 00403.29 16H280.36a30.62 30.62 0 00-21.51 8.89L13.09 270.58a44.86 44.86 0 000 63.34l117 117a44.84 44.84 0 0063.33 0l245.69-245.61A30.6 30.6 0 00448 183.8zM352 144a32 32 0 1132-32 32 32 0 01-32 32z"
           />
-          <path d="M352 144a32 32 0 1132-32 32 32 0 01-32 32z" />
           <path
-            d="M230 480l262-262a13.81 13.81 0 004-10V80"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            d="M496 64a16 16 0 00-16 16v127.37L218.69 468.69a16 16 0 1022.62 22.62l262-262A29.84 29.84 0 00512 208V80a16 16 0 00-16-16z"
           />
         </svg>
-          <span class="text-red-500"> above would allow you change the label
-        </span>]
+        <span class="text-red-500">
+          above would allow you change the label </span
+        >]
       </div>
       <div>
         <button class="hover:bg-gray-200 rounded-full p-2 focus:outline-none">
@@ -167,7 +164,37 @@
       </div>
     </div>
     <div class="w-7/12">
-    {{ reportDetail.body }}
+      <span>
+        {{ reportDetail.body }}
+      </span>
+      <span class="block mt-4 underline">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="ionicon h-5 inline-block no-underline mr-1 text-red-500"
+          viewBox="0 0 512 512"
+        >
+          <title>Warning</title>
+          <path
+            d="M85.57 446.25h340.86a32 32 0 0028.17-47.17L284.18 82.58c-12.09-22.44-44.27-22.44-56.36 0L57.4 399.08a32 32 0 0028.17 47.17z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+          />
+          <path
+            d="M250.26 195.39l5.74 122 5.73-121.95a5.74 5.74 0 00-5.79-6h0a5.74 5.74 0 00-5.68 5.95z"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="32"
+          />
+          <path d="M256 397.25a20 20 0 1120-20 20 20 0 01-20 20z" />
+        </svg>
+        Pardon me i am still fixing the label button to refresh the label's tag
+        in the body
+      </span>
     </div>
   </div>
 </template>
@@ -178,12 +205,19 @@ export default {
   props: {
     reportDetail: {
       type: Object,
-      required: true
+      required: true,
     },
     receivedTag: {
-      type: String
-    }
-  }
+      type: String,
+    },
+  },
+  mounted() {
+    // console.log("tag: ", this.receivedTag);
+  },
+  // beforeRouteEnter(to, from, next) {
+  //   // this.receivedTag = this.reportDetail.tag
+  //   next();
+  // },
 };
 </script>
 

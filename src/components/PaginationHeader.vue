@@ -221,21 +221,10 @@
         >
           <title>Pricetags</title>
           <path
-            d="M403.29 32H280.36a14.46 14.46 0 00-10.2 4.2L24.4 281.9a28.85 28.85 0 000 40.7l117 117a28.86 28.86 0 0040.71 0L427.8 194a14.46 14.46 0 004.2-10.2v-123A28.66 28.66 0 00403.29 32z"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            d="M448 183.8v-123A44.66 44.66 0 00403.29 16H280.36a30.62 30.62 0 00-21.51 8.89L13.09 270.58a44.86 44.86 0 000 63.34l117 117a44.84 44.84 0 0063.33 0l245.69-245.61A30.6 30.6 0 00448 183.8zM352 144a32 32 0 1132-32 32 32 0 01-32 32z"
           />
-          <path d="M352 144a32 32 0 1132-32 32 32 0 01-32 32z" />
           <path
-            d="M230 480l262-262a13.81 13.81 0 004-10V80"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="32"
+            d="M496 64a16 16 0 00-16 16v127.37L218.69 468.69a16 16 0 1022.62 22.62l262-262A29.84 29.84 0 00512 208V80a16 16 0 00-16-16z"
           />
         </svg>
       </button>
@@ -267,12 +256,28 @@
               >#conditionPresent</a
             >
           </div> -->
-          <div class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-green-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-            <input @change="change" type="radio" id="goodReport" v-model="tag" value="goodReport" />
+          <div
+            class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-green-200 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+          >
+            <input
+              @change="change"
+              type="radio"
+              id="goodReport"
+              v-model="tag"
+              value="goodReport"
+            />
             <label class="ml-2" for="goodReport">Good Report</label>
           </div>
-          <div  class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-red-300 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-            <input @change="change" type="radio" id="conditionReport" v-model="tag" value="conditionReport" />
+          <div
+            class="py-2 block px-4 text-sm leading-5 text-gray-700 hover:bg-red-300 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+          >
+            <input
+              @change="change"
+              type="radio"
+              id="conditionReport"
+              v-model="tag"
+              value="conditionReport"
+            />
             <label class="ml-2" for="conditionReport">Condition Report</label>
           </div>
           <div class="border-t border-gray-100"></div>
@@ -358,7 +363,7 @@ export default {
     return {
       pageCount: 1,
       isOpen: false,
-      tag: ''
+      tag: "",
     };
   },
   created() {
@@ -368,23 +373,23 @@ export default {
     reload() {
       location.reload();
     },
-    change(){
-      this.$emit('changeTagStuff', this.tag)
-      this.$store.dispatch('changeReportTag', 
-      {
+    change() {
+      this.$emit("changeTagStuff", this.tag);
+      this.$store.dispatch("changeReportTag", {
         tag: this.tag,
-        id: this.$route.params.id
-      })
+        id: this.$route.params.id,
+      });
+      this.tag = "";
     },
     open() {
       this.isOpen = this.isOpen ? false : true;
     },
-    close(){
+    close() {
       setTimeout(() => {
         this.isOpen = this.isOpen ? false : true;
-        console.log('ha')
+        console.log("ha");
       }, 2000);
-    }
+    },
   },
   computed: {
     page() {

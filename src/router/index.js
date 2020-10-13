@@ -33,6 +33,7 @@ const routes = [
     beforeEnter(to, from, next) {
       store.dispatch("fetchSingleReport", to.params.id).then( reponse => {
         to.params.reportDetail = reponse
+        to.params.receivedTag = to.params.reportDetail.tag
         next();
       })
     },
