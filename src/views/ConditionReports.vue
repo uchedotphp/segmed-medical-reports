@@ -2,7 +2,7 @@
   <div>
     <NavigationMenu />
     <div class="ml-5">
-      <div
+      <!-- <div
         v-for="report in fetchAllReports"
         :key="report.id"
         @click="
@@ -27,6 +27,9 @@
           </span>
         </div>
         <div class="bg-green-300">#{{ report.tag }}</div>
+      </div> -->
+      <div class="text-center w-full px-4 py-2 border-b-2 border-gray-300">
+        No Reports Available. Try moving some reports to this archive.
       </div>
     </div>
   </div>
