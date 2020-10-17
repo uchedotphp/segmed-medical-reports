@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <LogoHeader />
-    <PaginationHeader @changeTagStuff="sendTag" />
+    <div class="sticky top-0 bg-white">
+      <LogoHeader />
+      <PaginationHeader @changeTagStuff="sendTag" />
+    </div>
     <router-view :receivedTag="receivedTag" :key="$route.fullPath" />
   </div>
 </template>
@@ -13,18 +15,18 @@ import PaginationHeader from "@/components/PaginationHeader";
 export default {
   components: {
     LogoHeader,
-    PaginationHeader
+    PaginationHeader,
   },
   data() {
     return {
-      receivedTag: '',
+      receivedTag: "",
     };
   },
   methods: {
     sendTag(value) {
       this.receivedTag = value;
     },
-  }
+  },
 };
 </script>
 <style lang="scss">

@@ -39,13 +39,13 @@ export default new Vuex.Store({
         );
         state.goodReports.push(goodReport);
       } else {
-        const exits = localStorage.getItem("segmed_good_reports")
-        state.goodReports = JSON.parse(exits)
+        const exits = localStorage.getItem("segmed_good_reports");
+        state.goodReports = JSON.parse(exits);
         state.goodReports.push(goodReport);
         localStorage.setItem(
           "segmed_good_reports",
           JSON.stringify(state.goodReports)
-        )
+        );
       }
     },
     SET_CONDITION_REPORTS(state, conditionReport) {
@@ -98,11 +98,37 @@ export default new Vuex.Store({
       }
     },
 
+    fetchGoodReports({ state }) {
+      if (localStorage.getItem("segmed_good_reports") !== null) {
+        const exits = localStorage.getItem("segmed_good_reports");
+        const goodReports = JSON.parse(exits);
+        state.goodReports = goodReports
+        console.log('the good reports', state.goodReports)
+        // commit("SET_GOOD_REPORTS", goodReports);
+        // commit("SET_REPORTS_TOTAL", parseInt(100));
+      } else {
+        return axios
+          .get("https://jsonplaceholder.typicode.com/posts")
+          .then((response) => {
+            console.log(response)
+            // commit("SET_REPORTS_TOTAL", response.headers["x-total-count"]);
+            // const newData = response.data.map((eachObj) => {
+            //   eachObj.tag = "goodReport";
+            //   return eachObj;
+            // });
+            // commit("SET_REPORTS", newData);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    },
+
     fetchSingleReport({ commit }, id) {
       if (localStorage.getItem("segmed_reports") !== null) {
         const exits = localStorage.getItem("segmed_reports");
         const storedReports = JSON.parse(exits);
-        const report = storedReports.find((report) => report.id == id)
+        const report = storedReports.find((report) => report.id == id);
         return report;
       } else {
         return axios
@@ -121,8 +147,8 @@ export default new Vuex.Store({
       report.tag = tag;
       storedReports.splice(id - 1, 1, report);
       commit("REPLACE_REPORTS", storedReports);
-      if (report.tag == 'goodReport') {
-       commit("SET_GOOD_REPORTS", report); 
+      if (report.tag == "goodReport") {
+        commit("SET_GOOD_REPORTS", report);
       } else {
         commit("SET_CONDITION_REPORTS", report);
       }
@@ -134,6 +160,8 @@ export default new Vuex.Store({
   },
   getters: {
     fetchAllReports: (state) => state.reports,
+    fetchAllGoodReports: (state) => state.goodReports,
+    fetchAllConditionReports: (state) => state.conditionReports,
     reportsCount: (state) => state.reportsTotal,
   },
 });
