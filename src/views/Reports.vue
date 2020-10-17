@@ -2,17 +2,16 @@
   <div>
     <NavigationMenu />
     <div class="ml-5">
-      <div
+      <router-link
         v-for="report in fetchAllReports"
         :key="report.id"
-        @click="
-          $router.push({
-            name: 'ReportDetail',
-            params: { id: report.id },
-          })
-        "
-        class="house cursor-pointer hover:shadow-sm hover:border-gray-400 w-full px-4 py-2 border-b-2 border-gray-300"
+        :to="{
+          name: 'ReportDetail',
+          params: { id: report.id },
+        }"
+        class="house hover:shadow-sm border-b-2 hover:border-gray-400 w-full px-4 py-2 border-gray-300"
       >
+        <!-- <div class="border-b-2 "> -->
         <div class="">
           {{ report.id }}
         </div>
@@ -33,7 +32,8 @@
         >
           #{{ report.tag }}
         </div>
-      </div>
+      </router-link>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -62,5 +62,14 @@ export default {
 .house {
   display: grid;
   grid-template-columns: 30px 150px auto 110px;
+}
+
+a:link {
+  color: #000000;
+}
+
+/* visited link */
+a:visited {
+  color: #757575;
 }
 </style>
