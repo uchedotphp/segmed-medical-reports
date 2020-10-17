@@ -293,7 +293,7 @@
       <button v-else
         class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none"
       >
-        Report Number <span class="text-red-500">{{ $route.params.id }}</span> of {{ reportsCount }}
+        Report Number {{ $route.params.id }} of {{ reportsCount }}
       </button>
       <span v-show="$route.name == 'ReportDetail'">
         <router-link

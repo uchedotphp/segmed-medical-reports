@@ -15,35 +15,57 @@ export default new Vuex.Store({
     // limit: 20
   },
   mutations: {
-    REPLACE_REPORTS(state, reports){
-      localStorage.removeItem('segmed_reports')
+    REPLACE_REPORTS(state, reports) {
+      localStorage.removeItem("segmed_reports");
       localStorage.setItem("segmed_reports", JSON.stringify(reports));
-      state.reports = reports
+      state.reports = reports;
     },
     SET_REPORTS(state, reports) {
       if (localStorage.getItem("segmed_reports") === null) {
         localStorage.setItem("segmed_reports", JSON.stringify(reports));
         state.reports = reports;
       } else {
-        // state.reports = localStorage.getItem("segmed_reports")
         const exits = localStorage.getItem("segmed_reports");
         state.reports = JSON.parse(exits);
-        // exits.push(localStorage.getItem("segmed_reports"))
-        // console.log("reports from local that exists: ", JSON.parse(exits));
       }
     },
-    SET_GOOD_REPORTS(state, goodReport){
+    SET_GOOD_REPORTS(state, goodReport) {
       if (localStorage.getItem("segmed_good_reports") === null) {
-        localStorage.setItem("segmed_good_reports", JSON.stringify(goodReport))
+        const theGoodReports = [];
+        theGoodReports.push(goodReport);
+        localStorage.setItem(
+          "segmed_good_reports",
+          JSON.stringify(theGoodReports)
+        );
         state.goodReports.push(goodReport);
       } else {
-        // state.reports = localStorage.getItem("segmed_reports")
-        const exits = localStorage.getItem("segmed_good_reports");
-        state.goodReports = JSON.parse(exits);
-        // exits.push(localStorage.getItem("segmed_reports"))
-        // console.log("reports from local that exists: ", JSON.parse(exits));
+        const exits = localStorage.getItem("segmed_good_reports")
+        state.goodReports = JSON.parse(exits)
+        state.goodReports.push(goodReport);
+        localStorage.setItem(
+          "segmed_good_reports",
+          JSON.stringify(state.goodReports)
+        )
       }
-      state.goodReports.push(goodReport)
+    },
+    SET_CONDITION_REPORTS(state, conditionReport) {
+      if (localStorage.getItem("segmed_condition_reports") === null) {
+        const theConditionReports = [];
+        theConditionReports.push(conditionReport);
+        localStorage.setItem(
+          "segmed_condition_reports",
+          JSON.stringify(theConditionReports)
+        );
+        state.conditionReports.push(conditionReport);
+      } else {
+        const exits = localStorage.getItem("segmed_condition_reports");
+        state.conditionReports = JSON.parse(exits);
+        state.conditionReports.push(conditionReport);
+        localStorage.setItem(
+          "segmed_condition_reports",
+          JSON.stringify(state.conditionReports)
+        );
+      }
     },
     SET_REPORTS_TOTAL(state, reportsTotal) {
       state.reportsTotal = reportsTotal;
@@ -54,25 +76,12 @@ export default new Vuex.Store({
   },
   actions: {
     fetchReports({ commit }) {
-      // const exits = localStorage.getItem("segmed_reports");
-      // const storedReports = JSON.parse(exits);
-
       if (localStorage.getItem("segmed_reports") !== null) {
         const exits = localStorage.getItem("segmed_reports");
         const storedReports = JSON.parse(exits);
-        // storedReports.length
         commit("SET_REPORTS", storedReports);
         commit("SET_REPORTS_TOTAL", parseInt(100));
-        // console.log("na the getter run");
-        // console.log("the getter data: ", storedReports);
       } else {
-        // console.log("na the axios call run");
-        // return axios
-        //   .get(
-        //     "https://jsonplaceholder.typicode.com/posts?_page=" +
-        //       page +
-        //       "&_limit=20"
-        //   )
         return axios
           .get("https://jsonplaceholder.typicode.com/posts")
           .then((response) => {
@@ -93,10 +102,7 @@ export default new Vuex.Store({
       if (localStorage.getItem("segmed_reports") !== null) {
         const exits = localStorage.getItem("segmed_reports");
         const storedReports = JSON.parse(exits);
-        const report = storedReports.find((report) => report.id == id);
-        // commit("SET_REPORT", report);
-        // console.log("yur report: ", report);
-        // console.log("the id: ", id);
+        const report = storedReports.find((report) => report.id == id)
         return report;
       } else {
         return axios
@@ -113,8 +119,17 @@ export default new Vuex.Store({
       const storedReports = JSON.parse(exits);
       const report = storedReports.find((report) => report.id == id);
       report.tag = tag;
-      storedReports.splice((id-1), 1, report);
+      storedReports.splice(id - 1, 1, report);
       commit("REPLACE_REPORTS", storedReports);
+      if (report.tag == 'goodReport') {
+       commit("SET_GOOD_REPORTS", report); 
+      } else {
+        commit("SET_CONDITION_REPORTS", report);
+      }
+    },
+
+    pushToGoodReports({ commit }, goodReport) {
+      commit("SET_GOOD_REPORTS", goodReport);
     },
   },
   getters: {
