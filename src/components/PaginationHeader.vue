@@ -285,38 +285,44 @@
       </div>
     </div>
     <div>
-      <button
+      <button v-if="$route.name !== 'ReportDetail'"
         class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none"
       >
         {{ page }} - 100 of {{ reportsCount }}
       </button>
-      <router-link
-        tag="button"
-        :disabled="page == 1"
-        :to="{ name: 'AllReports', query: { page: page - 1 } }"
-        rel="prev"
-        class="cursor-not-allowed rounded-full px-2 py-2 mr-2 focus:outline-none"
-        :class="[page == 1 ? 'hover:bg-white' : 'hover:bg-gray-200']"
+      <button v-else
+        class="hover:bg-gray-200 rounded px-2 py-2 text-sm mr-8 focus:outline-none"
       >
-        <svg
-          class="h-4 inline-block"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
+        Report Number <span class="text-red-500">{{ $route.params.id }}</span> of {{ reportsCount }}
+      </button>
+      <span v-show="$route.name == 'ReportDetail'">
+        <router-link
+          tag="button"
+          :disabled="page == 1"
+          :to="{ name: 'AllReports', query: { page: page - 1 } }"
+          rel="prev"
+          class="cursor-not-allowed rounded-full px-2 py-2 mr-2 focus:outline-none"
+          :class="[page == 1 ? 'hover:bg-white' : 'hover:bg-gray-200']"
         >
-          <title>ionicons-v5-a</title>
-          <polyline
-            points="328 112 184 256 328 400"
-            style="
-              fill: none;
-              stroke: #000;
-              stroke-linecap: round;
-              stroke-linejoin: round;
-              stroke-width: 48px;
-            "
-          />
-        </svg>
-      </router-link>
-      <!-- <router-link
+          <svg
+            class="h-4 inline-block"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <title>ionicons-v5-a</title>
+            <polyline
+              points="328 112 184 256 328 400"
+              style="
+                fill: none;
+                stroke: #000;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 48px;
+              "
+            />
+          </svg>
+        </router-link>
+        <!-- <router-link
         tag="button"
         :disabled="reportsCount <= page * 20"
         :class="[
@@ -326,31 +332,32 @@
         rel="next"
         class="rounded-full px-2 py-2 focus:outline-none"
       > -->
-      <router-link
-        tag="button"
-        :disabled="true"
-        :to="{ name: 'AllReports', query: { page: page + 1 } }"
-        rel="next"
-        class="cursor-not-allowed rounded-full px-2 py-2 hover:bg-white focus:outline-none"
-      >
-        <svg
-          class="h-4 inline-block"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
+        <router-link
+          tag="button"
+          :disabled="true"
+          :to="{ name: 'AllReports', query: { page: page + 1 } }"
+          rel="next"
+          class="cursor-not-allowed rounded-full px-2 py-2 hover:bg-white focus:outline-none"
         >
-          <title>ionicons-v5-a</title>
-          <polyline
-            points="184 112 328 256 184 400"
-            style="
-              fill: none;
-              stroke: #000;
-              stroke-linecap: round;
-              stroke-linejoin: round;
-              stroke-width: 48px;
-            "
-          />
-        </svg>
-      </router-link>
+          <svg
+            class="h-4 inline-block"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <title>ionicons-v5-a</title>
+            <polyline
+              points="184 112 328 256 184 400"
+              style="
+                fill: none;
+                stroke: #000;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 48px;
+              "
+            />
+          </svg>
+        </router-link>
+      </span>
     </div>
   </div>
 </template>

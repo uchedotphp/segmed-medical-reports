@@ -2,7 +2,7 @@
   <div class="flex px-8 border-b border-gray-300">
     <span class="text-xs mr-3 self-center text-gray-600"> S/N </span>
     <router-link exact-active-class="report-badge-all text-blue-500"
-      class="w-2/12 mx-3 pt-4 hover:bg-gray-200 font-bold"
+      class="w-2/12 ml-1 px-2 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'AllReports' }"
     >
       <svg
@@ -86,7 +86,7 @@
       <span class="text-sm"> All Reports </span>
     </router-link>
     <router-link exact-active-class="report-badge-good text-green-500"
-      class="w-2/12 mx-3 pt-4 hover:bg-gray-200 font-bold"
+      class="w-2/12 px-2 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'GoodReports' }"
     >
       <svg
@@ -115,7 +115,7 @@
       <span class="text-sm"> #Good Report(12) </span>
     </router-link>
     <router-link exact-active-class="report-badge-present text-red-500"
-      class="w-2/12 mx-3 pt-4 hover:bg-gray-200 font-bold"
+      class="w-2/12 px-2 pt-4 hover:bg-gray-200 font-bold"
       :to="{ name: 'ConditionReports' }"
     >
       <svg

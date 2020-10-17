@@ -32,8 +32,18 @@ export default new Vuex.Store({
         // console.log("reports from local that exists: ", JSON.parse(exits));
       }
     },
-    SET_GOOD_REPORTS(state, goodReports){
-      state.goodReports.push(goodReports)
+    SET_GOOD_REPORTS(state, goodReport){
+      if (localStorage.getItem("segmed_good_reports") === null) {
+        localStorage.setItem("segmed_good_reports", JSON.stringify(goodReport))
+        state.goodReports.push(goodReport);
+      } else {
+        // state.reports = localStorage.getItem("segmed_reports")
+        const exits = localStorage.getItem("segmed_good_reports");
+        state.goodReports = JSON.parse(exits);
+        // exits.push(localStorage.getItem("segmed_reports"))
+        // console.log("reports from local that exists: ", JSON.parse(exits));
+      }
+      state.goodReports.push(goodReport)
     },
     SET_REPORTS_TOTAL(state, reportsTotal) {
       state.reportsTotal = reportsTotal;
