@@ -53,12 +53,14 @@
           />
         </svg>
       </button>
-      <img
+      <router-link :to="{name: 'AllReports' }">
+        <img
         src="./../assets/logo+black.png"
         class="h-10 inline-block mr-24"
         alt=""
         srcset=""
       />
+      </router-link>
       <div class="relative inline-block w-2/5">
         <div class="w-fullshadow-sm">
           <svg
@@ -253,7 +255,7 @@
           <circle cx="250" cy="348" r="20" />
         </svg>
       </button>
-      <button
+      <button @click="$store.dispatch('clearAllData')"
         class="hover:bg-gray-200 focus:outline-none rounded-full px-2 py-2 ml-2"
       >
         <svg

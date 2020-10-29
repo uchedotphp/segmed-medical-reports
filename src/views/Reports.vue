@@ -29,6 +29,7 @@
           :class="[
             report.tag == 'conditionReport' ? 'bg-red-300' : 'bg-green-300',
           ]"
+          class="text-black"
         >
           #{{ report.tag }}
         </div>

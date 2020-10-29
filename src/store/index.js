@@ -75,7 +75,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchReports({ commit }) {
+    clearAllData(){
+      localStorage.removeItem("segmed_reports");
+      localStorage.removeItem("segmed_good_reports");
+      localStorage.removeItem("segmed_condition_reports");
+      location.reload();
+    },
+    fetchReports({ state, commit }) {
       if (localStorage.getItem("segmed_reports") !== null) {
         const exits = localStorage.getItem("segmed_reports");
         const storedReports = JSON.parse(exits);
@@ -90,7 +96,8 @@ export default new Vuex.Store({
               eachObj.tag = "goodReport";
               return eachObj;
             });
-            commit("SET_REPORTS", newData);
+            commit("SET_REPORTS", newData)
+            state.goodReports = newData
           })
           .catch((error) => {
             console.error(error);
@@ -106,22 +113,48 @@ export default new Vuex.Store({
         console.log('the good reports', state.goodReports)
         // commit("SET_GOOD_REPORTS", goodReports);
         // commit("SET_REPORTS_TOTAL", parseInt(100));
-      } else {
-        return axios
-          .get("https://jsonplaceholder.typicode.com/posts")
-          .then((response) => {
-            console.log(response)
-            // commit("SET_REPORTS_TOTAL", response.headers["x-total-count"]);
-            // const newData = response.data.map((eachObj) => {
-            //   eachObj.tag = "goodReport";
-            //   return eachObj;
-            // });
-            // commit("SET_REPORTS", newData);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+      } 
+      // else {
+      //   return axios
+      //     .get("https://jsonplaceholder.typicode.com/posts")
+      //     .then((response) => {
+      //       console.log(response)
+      //       // commit("SET_REPORTS_TOTAL", response.headers["x-total-count"]);
+      //       // const newData = response.data.map((eachObj) => {
+      //       //   eachObj.tag = "goodReport";
+      //       //   return eachObj;
+      //       // });
+      //       // commit("SET_REPORTS", newData);
+      //     })
+      //     .catch((error) => {
+      //       console.error(error);
+      //     });
+      // }
+    },
+
+    fetchConditionReports({ state }) {
+      if (localStorage.getItem("segmed_condition_reports") !== null) {
+        const exits = localStorage.getItem("segmed_condition_reports");
+        const conditionReports = JSON.parse(exits);
+        state.conditionReports = conditionReports
+        console.log('the condition reports', state.conditionReports)
+      } 
+      // else {
+      //   return axios
+      //     .get("https://jsonplaceholder.typicode.com/posts")
+      //     .then((response) => {
+      //       console.log(response)
+      //       // commit("SET_REPORTS_TOTAL", response.headers["x-total-count"]);
+      //       // const newData = response.data.map((eachObj) => {
+      //       //   eachObj.tag = "goodReport";
+      //       //   return eachObj;
+      //       // });
+      //       // commit("SET_REPORTS", newData);
+      //     })
+      //     .catch((error) => {
+      //       console.error(error);
+      //     });
+      // }
     },
 
     fetchSingleReport({ commit }, id) {
